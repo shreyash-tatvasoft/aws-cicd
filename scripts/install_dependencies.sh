@@ -2,6 +2,8 @@
 
 cd /home/ec2-user/myapp
 
+sudo chown -R ec2-user:ec2-user /home/ec2-user/myapp
+
 # Install Node.js if not present
 if ! command -v node &> /dev/null; then
   echo "Node.js not found. Installing..."
