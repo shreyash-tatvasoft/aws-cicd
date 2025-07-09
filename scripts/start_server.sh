@@ -2,13 +2,15 @@
 set -e
 
 cd /home/ec2-user/myapp
+echo "Current working directory: $(pwd)"
+echo "Listing contents:"
+ls -la
 
 echo "Fixing ownership..."
 sudo chown -R ec2-user:ec2-user /home/ec2-user/myapp
 
-# Ensure entry script exists
 if [ ! -f index.js ]; then
-  echo "Error: index.js not found!"
+  echo "Error: index.js not found in $(pwd)"
   exit 1
 fi
 
