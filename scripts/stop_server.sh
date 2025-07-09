@@ -1,9 +1,13 @@
 #!/bin/bash
 set -e
 
-echo "Stopping PM2 processes..."
+cd /home/ec2-user/myapp
 
-if command -v pm2 &> /dev/null; then
-  pm2 stop all || true
-  pm2 delete all || true
+echo "Stopping Node.js app..."
+
+if [ -f app.pid ]; then
+  kill $(cat app.pid) || true
+  rm app.pid
+else
+  echo "No running process found (app.pid missing)"
 fi
