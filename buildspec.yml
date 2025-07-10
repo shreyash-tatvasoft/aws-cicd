@@ -3,32 +3,20 @@ version: 0.2
 phases:
   install:
     runtime-versions:
-      nodejs: 18
+      nodejs: 18  
     commands:
-      - echo Installing dependencies...
       - npm install
-      - npm install -g pm2
-      - echo Dependencies installed.
-
   build:
     commands:
-      - echo Build started on `date`
       - npm run build
-      - echo Build finished.
-
   post_build:
     commands:
-      - echo Build completed on `date`
-      - echo Preparing artifact directory...
-      - mkdir -p build_output
-      - cp -r dist build_output/     # or use build/ if that's your output dir
-      - cp -r scripts build_output/
-      - cp appspec.yml build_output/
-      - cp package*.json build_output/
-      - echo Artifact ready for CodeDeploy
+      - echo "▶️ Preparing deployment bundle"
+
 
 artifacts:
   files:
-    - '**/*'
-  base-directory: build_output
-  discard-paths: no
+    - dist/**/*
+    - scripts/**/*
+    - package.json
+    - appspec.yml
