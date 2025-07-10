@@ -5,6 +5,9 @@ echo "After install script running..."
 
 cd /home/ec2-user/Simple-Node-App
 
+echo "Fixing ownership..."
+sudo chown -R ec2-user:ec2-user /home/ec2-user/Simple-Node-App
+
 # Install Node.js if not already installed
 if ! command -v node &>/dev/null; then
   echo "Installing Node.js..."
